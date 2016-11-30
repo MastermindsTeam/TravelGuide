@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by ivano on 30.11.2016 г..
+ * Created by ivanov on 30.11.2016 г..
  */
 public class User {
     private Long id;
