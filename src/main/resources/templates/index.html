@@ -8,7 +8,14 @@
 <body>
 <header th:replace="layout :: site-header" />
 
+<aside>
+    <h2>Recent Posts</h2>
+    <a href="#" th:each="p : ${latest5posts}" th:text="${p.title}"
+       th:href="@{/posts/view/{id}/(id=${p.id})}">Work Begins on HTML5.1</a>
+</aside>
+
 <main id="posts">
+
     <article th:each="p : ${latest3posts}">
         <h2 class="title" th:text="${p.title}">Post Title</h2>
         <div class="date">
