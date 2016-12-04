@@ -1,6 +1,7 @@
 package blog.controllers;
 
 import blog.models.Post;
+import blog.services.NotificationService;
 import blog.services.PostService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class HomeController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @RequestMapping("/")
     public String home(Model model) {
         List<Post> latest5Posts = postService.findLatest5();
@@ -33,7 +37,12 @@ public class HomeController {
 
     @RequestMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model){
-        model.addAttribute("post", postService.findById(id));
+        Post post = postService.findById(id);
+        if(post == null){
+            notificationService.addErrorMessage("Cannot find post: " + id);
+            return "redirect:/";
+        }
+        model.addAttribute("post", post);
         return "/posts/index";
     }
 }
