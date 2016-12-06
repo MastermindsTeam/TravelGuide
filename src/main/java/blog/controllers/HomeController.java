@@ -27,6 +27,9 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(Model model) {
+
+        notificationService.addInfoMessage("Welcome to our amazing blog!");
+
         List<Post> latest5Posts = postService.findLatest5();
         model.addAttribute("latest5posts", latest5Posts);
         List<Post> latest3Posts = latest5Posts.stream()
