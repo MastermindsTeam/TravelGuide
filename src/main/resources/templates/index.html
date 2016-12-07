@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout :: site-head">
-    <title>Spring MVC Blog</title>
-</head>
+<head th:include="fragments/head"></head>
 
 <body>
-<header th:replace="layout :: site-header" />
 
-<aside>
-    <h2>Recent Posts</h2>
-    <a href="#" th:each="p : ${latest5posts}" th:text="${p.title}"
-       th:href="@{/posts/view/{id}/(id=${p.id})}">Work Begins on HTML5.1</a>
-</aside>
+<header th:include="fragments/header"></header>
+
+<aside th:include="fragments/sidebar"></aside>
 
 <main id="posts">
 
@@ -26,11 +21,11 @@
                         p.author.fullName : p.author.username}">Svetlin Nakov</span>
                 </span>
         </div>
-        <p class="content" th:utext="${p.body}">Post content</p>
+        <p class="content content-fluid" th:utext="${p.body}">Post content</p>
     </article>
 </main>
 
-<footer th:replace="layout :: site-footer" />
+<footer th:include="fragments/footer"></footer>
 </body>
 
 </html>
