@@ -75,3 +75,7 @@ ul#messages li.error {
     font-size: 0.9em;
     font-style: italic;
 }
+
+.bg-gray{
+    background-color: #f9f9f9;
+}
