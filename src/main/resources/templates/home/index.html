@@ -1,7 +1,7 @@
-<main id="posts">
+<main id="posts" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container body-content">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-9" th:each="post : ${latest5posts}">
                 <article>
                     <h2 class="title" th:text="${post.title}">Post Title</h2>
                     <div class="date">
