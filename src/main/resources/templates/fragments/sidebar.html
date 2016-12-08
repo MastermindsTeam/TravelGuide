@@ -1,13 +1,15 @@
 <aside th:fragment="sidebar">
-    <div class="col-sm-4 pull-right">
+    <div class="col-sm-3 pull-right">
         <div class="panel panel-default ">
             <div class="panel-heading">
                 <h2 class="panel-title">Recent Posts</h2>
             </div>
             <div class="panel-body bg-gray text-center">
-                <p href="#" th:each="p : ${latest5posts}" th:text="${p.title}"
-                   th:href="@{/posts/view/{id}/(id=${p.id})}">Work Begins on HTML5.1</p>
-                <p href="#" class="btn-success" role="button">See More</p>
+                <div th:class="list-group">
+                    <a th:each="p : ${latest5posts}" th:class="list-group-item"
+                       th:href="@{/posts/view/{id}/(id=${p.id})}" th:text="${p.title}"></a>
+                </div>
+                <a href="#" class="btn btn-success" role="button">See More</a>
             </div>
         </div>
     </div>
