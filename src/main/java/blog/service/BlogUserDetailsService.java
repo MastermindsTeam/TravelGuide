@@ -1,5 +1,6 @@
 package blog.service;
 
+
 import blog.entity.User;
 import blog.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,26 +14,32 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service("blogUserDetailsService")
-public class BlogUserDetailsService implements UserDetailsService{
+public class BlogUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
-    public BlogUserDetailsService(UserRepository userRepository){
+    public BlogUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
 
-        if(user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("Invalid User");
-        } else{
+        }
+        else {
             Set<GrantedAuthority> grantedAuthorities = user.getRoles()
                     .stream()
                     .map(role -> new SimpleGrantedAuthority(role.getName()))
                     .collect(Collectors.toSet());
 
-            return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
+            return new org
+                    .springframework
+                    .security
+                    .core
+                    .userdetails
+                    .User(user.getEmail(), user.getPassword(), grantedAuthorities);
         }
     }
 }

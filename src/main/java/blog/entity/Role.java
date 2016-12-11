@@ -1,19 +1,24 @@
 package blog.entity;
 
+import org.springframework.util.StringUtils;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by ivanov on 11.12.2016 г..
- */
 @Entity
 @Table(name = "roles")
 public class Role {
+
     private Integer id;
 
     private String name;
 
     private Set<User> users;
+
+    public Role() {
+        this.users = new HashSet<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,4 +47,13 @@ public class Role {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
+
+    @Transient
+    public String getSimpleName(){
+        return StringUtils.capitalize(this.getName().substring(5).toLowerCase());
+    }
+
+
+
+
 }

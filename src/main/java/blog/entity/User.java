@@ -1,15 +1,14 @@
 package blog.entity;
 
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by ivanov on 11.12.2016 г..
- */
 @Entity
 @Table(name = "users")
 public class User {
+
     private Integer id;
 
     private String email;
@@ -18,18 +17,30 @@ public class User {
 
     private String password;
 
+//    private Set<Article> articles;
+
     private Set<Role> roles;
 
-    public User(String email, String fullName, String password){
+//    @OneToMany(mappedBy = "author")
+//    public Set<Article> getArticles() {
+//        return articles;
+//    }
+//
+//    public void setArticles(Set<Article> articles) {
+//        this.articles = articles;
+//    }
+
+    public User(String email, String fullName, String password) {
         this.email = email;
         this.password = password;
         this.fullName = fullName;
 
         this.roles = new HashSet<>();
+//        this.articles=new HashSet<>();
+
     }
 
-    public User(){
-    }
+    public User() {    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +61,7 @@ public class User {
         this.email = email;
     }
 
-    @Column(name = "fullname", nullable = false)
+    @Column(name = "fullName", nullable = false)
     public String getFullName() {
         return fullName;
     }
@@ -69,7 +80,7 @@ public class User {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="users_roles")
+    @JoinTable(name = "users_roles")
     public Set<Role> getRoles() {
         return roles;
     }
@@ -77,4 +88,20 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
+    @Transient
+    public boolean isAdmin(){
+        return this.getRoles()
+                .stream()
+                .anyMatch(role->role.getName().equals("ROLE_ADMIN"));
+    }
+
+//    @Transient
+//    public boolean isAuthor(Article article){
+//        return Objects.equals(this.getId(),article.getAuthor().getId());
+//    }
 }

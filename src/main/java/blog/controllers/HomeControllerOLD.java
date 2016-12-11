@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * Created by ivanov on 24.11.2016 г..
  */
 @Controller
-public class HomeController {
+public class HomeControllerOLD {
 
     @Autowired
     private PostService postService;

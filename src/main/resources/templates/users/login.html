@@ -1,36 +1,36 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
 
-<head th:replace="layout :: site-head">
-    <title>Login</title>
-</head>
+<!--<head th:replace="layout :: site-head">-->
+    <!--<title>Login</title>-->
+<!--</head>-->
 
-<body>
-<header th:replace="layout :: site-header"/>
+<!--<body>-->
+<!--<header th:replace="layout :: site-header"/>-->
 
-<h2>Please login</h2>
-<form method="post" th:object="${loginForm}">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username"
-           th:value="*{username}" />
-    <span class="formError" th:if="${#fields.hasErrors('username')}"
-          th:errors="*{username}">Invalid username</span>
+<!--<h2>Please login</h2>-->
+<!--<form method="post" th:object="${loginForm}">-->
+    <!--<label for="username">Username:</label>-->
+    <!--<input type="text" id="username" name="username"-->
+           <!--th:value="*{username}" />-->
+    <!--<span class="formError" th:if="${#fields.hasErrors('username')}"-->
+          <!--th:errors="*{username}">Invalid username</span>-->
 
-    <br/>
+    <!--<br/>-->
 
-    <label for="password">Password:</label>
-    <input type="text" id="password" name="password"
-           th:value="*{password}" />
-    <span class="formError"
-          th:if="${#fields.hasErrors('password')}"
-          th:errors="*{password}">Invalid password</span>
-    <br/>
+    <!--<label for="password">Password:</label>-->
+    <!--<input type="text" id="password" name="password"-->
+           <!--th:value="*{password}" />-->
+    <!--<span class="formError"-->
+          <!--th:if="${#fields.hasErrors('password')}"-->
+          <!--th:errors="*{password}">Invalid password</span>-->
+    <!--<br/>-->
 
-    <input type="submit" value="Login"/>
-</form>
+    <!--<input type="submit" value="Login"/>-->
+<!--</form>-->
 
-<footer th:replace="layout :: site-footer"/>
-</body>
+<!--<footer th:replace="layout :: site-footer"/>-->
+<!--</body>-->
 
-</html>
+<!--</html>-->
 
