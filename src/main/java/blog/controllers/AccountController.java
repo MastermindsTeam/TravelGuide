@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-/**
- * Created by ivanov on 6.12.2016 г..
- */
+
 @Controller
 public class AccountController {
 
