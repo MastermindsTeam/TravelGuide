@@ -12,9 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Created by ivanov on 11.12.2016 г..
- */
 @Service("blogUserDetailsService")
 public class BlogUserDetailsService implements UserDetailsService{
     private final UserRepository userRepository;

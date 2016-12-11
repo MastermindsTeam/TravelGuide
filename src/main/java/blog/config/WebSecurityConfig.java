@@ -12,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/**
- * Created by ivanov on 11.12.2016 г..
- */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
