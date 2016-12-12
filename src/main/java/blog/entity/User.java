@@ -17,18 +17,18 @@ public class User {
 
     private String password;
 
-//    private Set<Article> articles;
+    private Set<Article> articles;
 
     private Set<Role> roles;
 
-//    @OneToMany(mappedBy = "author")
-//    public Set<Article> getArticles() {
-//        return articles;
-//    }
-//
-//    public void setArticles(Set<Article> articles) {
-//        this.articles = articles;
-//    }
+    @OneToMany(mappedBy = "author")
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
+    }
 
     public User(String email, String fullName, String password) {
         this.email = email;
@@ -36,7 +36,7 @@ public class User {
         this.fullName = fullName;
 
         this.roles = new HashSet<>();
-//        this.articles=new HashSet<>();
+        this.articles=new HashSet<>();
 
     }
 

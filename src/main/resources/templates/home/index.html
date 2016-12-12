@@ -1,20 +1,26 @@
-<main id="posts" xmlns:th="http://www.w3.org/1999/xhtml">
+<main>
     <div class="container body-content">
         <div class="row">
-            <div class="col-md-9" th:each="post : ${latest5posts}">
-                <article>
-                    <h2 class="title" th:text="${post.title}">Post Title</h2>
-                    <div class="date">
-                        <i>Posted on</i>
-                        <span th:text="${#dates.format(post.date, 'dd-MMM-yyyy')}">22-May-2016</span>
-                        <span th:if="${post.author}" th:remove="tag">
-                    <i>by</i> <span th:text="${post.author.fullName != null ?
-                        post.author.fullName : post.author.username}">Svetlin Nakov</span>
-                </span>
-                    </div>
-                    <p class="content" th:utext="${post.body}">Post content</p>
-                </article>
-            </div>
+            <th:block th:each="article : ${articles}">
+                <div class="col-md-5">
+                    <article>
+                        <header>
+                            <h2 th:text="${article.title}"></h2>
+                        </header>
+
+                        <p th:text="${article.summary}"></p>
+
+                        <small class="author" th:text="${article.author.fullName}"></small>
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs"
+                                   th:href="@{/article/{id}(id=${article.id})}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </th:block>
         </div>
     </div>
 </main>
