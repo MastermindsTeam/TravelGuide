@@ -5,10 +5,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by ivanov on 12.12.2016 г..
+ */
 @Entity
 @Table(name = "users")
 public class User {
-
     private Integer id;
 
     private String email;
@@ -17,18 +19,9 @@ public class User {
 
     private String password;
 
-    private Set<Article> articles;
-
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "author")
-    public Set<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(Set<Article> articles) {
-        this.articles = articles;
-    }
+    private Set<Article> articles;
 
     public User(String email, String fullName, String password) {
         this.email = email;
@@ -36,11 +29,15 @@ public class User {
         this.fullName = fullName;
 
         this.roles = new HashSet<>();
-        this.articles=new HashSet<>();
-
+        this.articles = new HashSet<>();
     }
 
-    public User() {    }
+    public User() {
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,19 +86,12 @@ public class User {
         this.roles = roles;
     }
 
-    public void addRole(Role role) {
-        this.roles.add(role);
+    @OneToMany(mappedBy = "author")
+    public Set<Article> getArticles() {
+        return articles;
     }
 
-    @Transient
-    public boolean isAdmin(){
-        return this.getRoles()
-                .stream()
-                .anyMatch(role->role.getName().equals("ROLE_ADMIN"));
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
-
-//    @Transient
-//    public boolean isAuthor(Article article){
-//        return Objects.equals(this.getId(),article.getAuthor().getId());
-//    }
 }

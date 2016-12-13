@@ -1,7 +1,12 @@
 package blog.bindingModel;
 
+import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.constraints.NotNull;
 
+/**
+ * Created by ivanov on 13.12.2016 г..
+ */
 public class UserBindingModel {
     @NotNull
     private String email;

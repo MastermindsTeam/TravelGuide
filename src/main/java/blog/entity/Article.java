@@ -1,9 +1,10 @@
 package blog.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
+/**
+ * Created by ivanov on 13.12.2016 г..
+ */
 @Entity
 @Table(name = "articles")
 public class Article {
@@ -16,16 +17,18 @@ public class Article {
 
     private User author;
 
-//   private Category category;
+    public Article(String title, String content, User author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
 
-//    private Set<Tag> tags;
+    public Article() {
+    }
 
-    public Article(){     }
-
-    public Article(String title, String content, User author){
-        this.title=title;
-        this.content=content;
-        this.author=author;
+    @Transient
+    public String getSummary() {
+        return this.getContent().substring(0, this.getContent().length() / 2) + "...";
     }
 
     @Id
@@ -56,8 +59,8 @@ public class Article {
         this.content = content;
     }
 
-    @ManyToOne
-    @JoinColumn(nullable = false, name= "authorId")
+    @ManyToOne()
+    @JoinColumn(nullable = false, name = "authorId")
     public User getAuthor() {
         return author;
     }
@@ -65,31 +68,4 @@ public class Article {
     public void setAuthor(User author) {
         this.author = author;
     }
-
-//    @ManyToOne()
-//    @JoinColumn(nullable = false, name="categoryId")
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
-//
-//    @ManyToMany()
-//    @JoinColumn(table="articles_tags")
-//    public Set<Tag> getTags() {
-//        return tags;
-//    }
-//
-//    public void setTags(Set<Tag> tags) {
-//        this.tags = tags;
-//    }
-//
-    @Transient
-    public String getSummary(){
-        return this.getContent().substring(0,this.getContent().length()/2)+"...";
-
-    }
-
 }

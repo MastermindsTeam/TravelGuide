@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Created by ivanov on 13.12.2016 г..
+ */
 @Controller
 public class UserController {
-
     @Autowired
     RoleRepository roleRepository;
     @Autowired
@@ -34,14 +36,12 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("view", "user/register");
-
         return "base-layout";
     }
 
     @PostMapping("/register")
-    public String registerProcess(UserBindingModel userBindingModel){
-
-        if(!userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())){
+    public String registerProcess(UserBindingModel userBindingModel) {
+        if (!userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())) {
             return "redirect:/register";
         }
 
@@ -53,9 +53,7 @@ public class UserController {
                 bCryptPasswordEncoder.encode(userBindingModel.getPassword())
         );
 
-
         Role userRole = this.roleRepository.findByName("ROLE_USER");
-
         user.addRole(userRole);
 
         this.userRepository.saveAndFlush(user);
@@ -64,14 +62,13 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         model.addAttribute("view", "user/login");
-
         return "base-layout";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth != null) {
@@ -83,11 +80,11 @@ public class UserController {
 
     @GetMapping("/profile")
     @PreAuthorize("isAuthenticated()")
-    public String profilePage(Model model){
-        UserDetails principal = (UserDetails) SecurityContextHolder.getContext()
+    public String profilePage(Model model) {
+        UserDetails principal = (UserDetails) SecurityContextHolder
+                .getContext()
                 .getAuthentication()
                 .getPrincipal();
-
         User user = this.userRepository.findByEmail(principal.getUsername());
 
         model.addAttribute("user", user);
