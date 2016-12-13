@@ -2,7 +2,7 @@
     <div class="container body-content">
         <div class="row">
             <th:block th:each="article : ${articles}">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <article>
                         <header>
                             <h2 th:text="${article.title}"></h2>
@@ -11,7 +11,6 @@
                         <p th:text="${article.summary}"></p>
 
                         <small class="author" th:text="${article.author.fullName}"></small>
-
 
                         <footer>
                             <div class="pull-right">
@@ -22,8 +21,7 @@
                     </article>
                 </div>
             </th:block>
-
-            <aside th:fragment="sidebar">
+            <aside>
                 <div class="col-sm-3 pull-right">
                     <div class="panel panel-default ">
                         <div class="panel-heading">
@@ -39,7 +37,6 @@
                     </div>
                 </div>
             </aside>
-
         </div>
     </div>
 </main>

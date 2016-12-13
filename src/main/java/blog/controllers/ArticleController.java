@@ -2,20 +2,25 @@ package blog.controllers;
 
 
 import blog.bindingModel.ArticleBindingModel;
+import blog.constants.UriMappings;
 import blog.entity.Article;
 import blog.entity.User;
 import blog.repository.ArticleRepository;
 import blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/article/")
 public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
@@ -46,7 +51,7 @@ public class ArticleController {
 //    }
 
 
-    @GetMapping("/article/create")
+    @GetMapping(UriMappings.ARTICLE_CREATE)
     @PreAuthorize("isAuthenticated()")
     public String create(Model model) {
         model.addAttribute("view", "article/create");
@@ -57,7 +62,7 @@ public class ArticleController {
         return "base-layout";
     }
 
-    @PostMapping("/article/create")
+    @PostMapping(UriMappings.ARTICLE_CREATE)
     @PreAuthorize("isAuthenticated()")
     public String createProcess(ArticleBindingModel articleBindingModel) {
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -77,12 +82,12 @@ public class ArticleController {
         return "redirect:/";
     }
 
-//    @GetMapping("/article/{id}")
-//    public String details(Model model, @PathVariable Integer id) {
-//        if (!this.articleRepository.exists(id)) {
-//            return "redirect:/";
-//        }
-//
+    @GetMapping(UriMappings.ARTICLE_ID)
+    public String details(Model model, @PathVariable Integer id) {
+        if (!this.articleRepository.exists(id)) {
+            return "redirect:/";
+        }
+
 //        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) {
 //            UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //
@@ -90,13 +95,13 @@ public class ArticleController {
 //
 //            model.addAttribute("user", entityUser);
 //        }
-//
-//        Article article = this.articleRepository.findOne(id);
-//
-//        model.addAttribute("view", "article/details");
-//        model.addAttribute("article", article);
-//        return "base-layout";
-//    }
+
+        Article article = this.articleRepository.findOne(id);
+
+        model.addAttribute("view", "article/details");
+        model.addAttribute("article", article);
+        return "base-layout";
+    }
 //
 //    @GetMapping("/article/edit/{id}")
 //    @PreAuthorize("isAuthenticated()")
