@@ -3,6 +3,7 @@ package blog.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -37,6 +38,18 @@ public class User {
 
     public void addRole(Role role) {
         this.roles.add(role);
+    }
+
+    @Transient
+    public boolean isAdmin(){
+        return this.getRoles()
+                .stream()
+                .anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
+    }
+
+    @Transient
+    public boolean isAuthor(Article article){
+        return Objects.equals(this.getId(), article.getAuthor().getId());
     }
 
     @Id
