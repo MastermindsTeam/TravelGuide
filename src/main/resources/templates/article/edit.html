@@ -1,4 +1,4 @@
-<main>
+<main xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container body-content span=8 offset=2">
         <div class="well">
             <form class="form-horizontal" th:action="@{/article/edit/{id}(id=${article.id})}" method="POST">
@@ -18,25 +18,6 @@
                             <textarea class="form-control" rows="6" id="article_content" name="content" th:field="${article.content}"></textarea>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_category">Category</label>
-                        <div class="col-sm-6">
-                            <select class="form-control" id="article_category" name="categoryId">
-                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"  th:selected="${category.id == article.category.id}"></option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_tags">Tags</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="article_tags" placeholder="Tags" name="tagString" th:value="${tags}"/>
-                        </div>
-                    </div>
-
-
 
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
