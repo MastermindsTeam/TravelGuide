@@ -7,7 +7,7 @@
 
             <!--Logo-->
             <div class="navbar-header">
-                <a th:href="@{/}" class="navbar-brand" >MASTERMINDS TRAVEL GUIDE</a>
+                <a th:href="@{/}" class="navbar-brand">MASTERMINDS TRAVEL GUIDE</a>
                 <!--Collapse Menu Button-->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
                     <span class="icon-bar"></span>
@@ -30,18 +30,15 @@
                             Create Article
                         </a>
                     </li>
-
-
-                    <!--Drop Down Menu-->
                     <li class="dropdown" sec:authorize="hasRole('ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span
+                                class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a th:href="@{/admin/categories/}">Categories</a></li>
+                            <li><a href="#">Categories</a></li>
                             <li><a th:href="@{/admin/users/}">Users</a></li>
                         </ul>
                     </li>
                 </ul>
-
                 <!--Right Alignment-->
                 <ul class="nav navbar-nav navbar-right">
                     <li sec:authorize="isAnonymous()">
