@@ -1,5 +1,5 @@
 body>header {
-    background: #eee;
+    background: transparent;
     padding: 5px;
 }
 
@@ -11,7 +11,7 @@ body>header>a>img, body>header a  {
 }
 
 body>footer {
-    background-color: #AAAAAA !important;
+    background: #101010;
     padding: 5px;
     margin: 10px 0;
     text-align: center;
@@ -30,7 +30,7 @@ body>footer {
 body>aside {
     float: right;
     width: 200px;
-    background: #CCC;
+    background: #cccccc;
     padding: 15px;
     margin-left: 20px;
     margin-top: 10px;
@@ -44,6 +44,9 @@ body>aside a {
     display: block;
     margin: 5px 0px;
     text-decoration: none;
+}
+body {
+    background: radial-gradient(#104e8b, white, #104e8b);
 }
 
 body>main:after {
@@ -78,4 +81,62 @@ ul#messages li.error {
 
 .bg-gray{
     background-color: #f9f9f9;
+}
+
+p, a{
+    color: #ffffff !important;
+}
+
+h1 {
+    color: #000;
+}
+
+.well {
+    background-image: url('earth.jpg') !important;
+    border: 4px solid #262626;
+}
+
+.btn{
+    background: #104e8b !important;
+    border-radius: 40%;
+    color: #ffffff !important;
+    font-size: 16px;
+    border:4px solid #101010 !important;
+}
+.btn:hover {background-color: #8b2323 !important;}
+
+.btn:active {
+    box-shadow: 0 5px #101010;
+    transform: translateY(4px);
+}
+.btn-success:active, .btn-success:hover  {
+    background-color: #6e8b3d !important;
+}
+
+.btn-primary:active, .btn-primary:hover {
+    background-color: #46b8da !important;
+}
+.btn-default:active, .btn-default:hover {
+    background-color: #9d9d9d !important;
+}
+.btn-info:active, .btn-info:hover {
+    background-color: darkblue !important;
+}
+.btn-warning:active, .btn-warning:hover {
+    background-color: goldenrod !important;
+}
+
+.btn-danger:active, .btn-danger:hover {
+    background-color: #761c19 !important;
+}
+.panel-body{
+    background: linear-gradient(#104e8b, white);
+    border: 4px solid;
+}
+
+.panel-heading{
+    background: #101010 !important;
+}
+.panel-title{
+    color: #ccc;
 }
