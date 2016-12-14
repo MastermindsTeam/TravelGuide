@@ -2,13 +2,13 @@
     <div class="container body-content">
         <div class="row">
             <th:block th:each="article : ${articles}">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <article>
                         <header>
                             <h2 th:text="${article.title}"></h2>
                         </header>
 
-                        <h5 th:text="${article.summary}"></h5>
+                        <p th:text="${article.summary}"></p>
 
                         <small class="author" th:text="${article.author.fullName}"></small>
 

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
  * Created by ivanov on 13.12.2016 г..
  */
 @Controller
-@RequestMapping("/article/")
 public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;

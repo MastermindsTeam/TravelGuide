@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="fragments/head"></head>
+<head th:include="fragments/head" th:with="pageTitle='TRAVELBLOG'"></head>
 
 <body>
 
@@ -11,6 +10,8 @@
 <main th:include="${view}"></main>
 
 <footer th:include="fragments/footer"></footer>
+
+<span th:include="fragments/scripts-bundle"></span>
 
 </body>
 </html>
