@@ -1,10 +1,9 @@
 package blog.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Created by ivanov on 13.12.2016 г..
- */
 @Entity
 @Table(name = "articles")
 public class Article {
@@ -59,8 +58,8 @@ public class Article {
         this.content = content;
     }
 
-    @ManyToOne()
-    @JoinColumn(nullable = false, name = "authorId")
+    @ManyToOne
+    @JoinColumn(nullable = false, name= "authorId")
     public User getAuthor() {
         return author;
     }
