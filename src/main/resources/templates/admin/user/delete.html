@@ -3,15 +3,15 @@
         <div class="well">
             <form class="form-horizontal" th:action="@{/admin/users/delete/{id}(id=${user.id})}" method="post">
                 <fieldset>
-                    <legend>Delete User</legend>
+                    <legend><p>Delete User</p></legend>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_email">Email</label>
+                        <label class="col-sm-4 control-label" for="user_email"><p>Email</p></label>
                         <div class="col-sm-4 ">
                             <input class="form-control" type="email" id="user_email" placeholder="Email" name="email" th:value="${user.email}" disabled="disabled"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_fullname">Full Name</label>
+                        <label class="col-sm-4 control-label" for="user_fullname"><p>Full Name</p></label>
                         <div class="col-sm-4 ">
                             <input class="form-control" type="text" id="user_fullname" placeholder="Full Name" name="fullName" th:value="${user.fullName}" disabled="disabled"/>
                         </div>
