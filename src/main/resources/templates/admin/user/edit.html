@@ -37,8 +37,10 @@
                         <label class="col-sm-4 control-label" for="roles"><p>Roles</p></label>
                         <div class="col-sm-6">
                             <th:block th:each="role : ${roles}">
+                                <b><font color="black">
                                 <input id="roles" type="checkbox" name="roles" th:value="${role.id}" th:text="${role.getSimpleName()}" th:checked="${user.roles.contains(role)}"/>
                                 <br/>
+                                </font></b>
                             </th:block>
                         </div>
                     </div>
