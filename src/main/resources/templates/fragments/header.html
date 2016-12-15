@@ -1,4 +1,4 @@
-<header  th:fragment="header">
+<header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="container-fluid">
         <img src="/img/HeaderPictureNo3.jpg" class="img-responsive"></img>
     </div>
@@ -34,7 +34,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Categories</a></li>
+                            <li><a th:href="@{/admin/categories/}">Categories</a></li>
                             <li><a th:href="@{/admin/users/}">Users</a></li>
                         </ul>
                     </li>
