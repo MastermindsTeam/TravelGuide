@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_category">Category</label>
+                        <label class="col-sm-4 control-label" for="article_category"><p>Category</p></label>
                         <div class="col-sm-6">
                             <select class="form-control" id="article_category" name="categoryId">
                                 <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_tags">Tags</label>
+                        <label class="col-sm-4 control-label" for="article_tags"><p>Tags</p></label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="article_tags" placeholder="Tags" name="tagString"/>
                         </div>

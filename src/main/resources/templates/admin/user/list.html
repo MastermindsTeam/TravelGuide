@@ -1,16 +1,16 @@
 <main>
     <div class="container body-content">
         <div class="well">
-            <h2>All Users</h2>
+            <h2><p>All Users</p></h2>
             <div class="row">
                 <table class="table table-striped table-hover ">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
-                    </tr>
+                        <th><p>#</p></th>
+                        <th><p>Full Name</p></th>
+                        <th><p>Email</p></th>
+                        <th><h4>Actions</h4></th>
+                        </tr>
                     </thead>
                     <tbody>
 
@@ -20,8 +20,8 @@
                             <td th:text="${user.fullName}"></td>
                             <td th:text="${user.email}"></td>
                             <td>
-                                <a th:href="@{/admin/users/edit/{id}(id=${user.id})}">Edit</a>
-                                <a th:href="@{/admin/users/delete/{id}(id=${user.id})}">Delete</a>
+                                <a th:href="@{/admin/users/edit/{id}(id=${user.id})}"><font color="black">Edit</font></a>
+                                <a th:href="@{/admin/users/delete/{id}(id=${user.id})}"><font color="black">Delete</font></a>
                             </td>
                         </tr>
                     </th:block>
