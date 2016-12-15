@@ -1,7 +1,7 @@
 <main xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container body-content">
         <div class="row">
-            <div class="col-md-6" th:each="category : ${categories}">
+            <div class="col-md-9" th:each="category : ${categories}">
                 <header>
                     <h2>
                         <a th:href="@{/category/{id}(id=${category.id})}" th:text="${category.name + ' (' + #sets.size(category.articles) + ')'}">
@@ -11,7 +11,7 @@
             </div>
 
             <aside>
-                <div class="col-sm-3 pull-right">
+                <div class="container-fluid col-sm-3 pull-right">
                     <div class="panel panel-default ">
                         <div class="panel-heading">
                             <h2 class="panel-title">Recent Posts</h2>
