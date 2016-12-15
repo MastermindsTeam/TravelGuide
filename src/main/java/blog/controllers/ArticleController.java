@@ -20,9 +20,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -58,9 +60,21 @@ public class ArticleController {
         Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
         HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
 
+
+        String coordinates = "";
+
+        if (!StringUtils.isEmptyOrWhitespace(articleBindingModel.getMapCoordinates())) {
+            coordinates = parseCoordinates(articleBindingModel.getMapCoordinates());
+
+            if (coordinates.equals("ERROR")) {
+                throw new IllegalArgumentException("Invalid coordinates entered");
+            }
+        }
+
         Article articleEntity = new Article(
                 articleBindingModel.getTitle(),
                 articleBindingModel.getContent(),
+                coordinates,
                 userEntity,
                 category,
                 tags
@@ -70,13 +84,30 @@ public class ArticleController {
         return "redirect:/";
     }
 
+    private String parseCoordinates(String mapCoordinates) {
+        String[] coordinatesString = mapCoordinates.split(", ");
+
+        double latitude;
+        double longitude;
+
+        try {
+            latitude = Double.parseDouble(coordinatesString[0]);
+            longitude = Double.parseDouble(coordinatesString[1]);
+        } catch (NumberFormatException ex) {
+            return "ERROR";
+        }
+
+        String coordinates = String.format(Locale.ROOT, "%f,%f", latitude, longitude);
+        return coordinates;
+    }
+
     @GetMapping("/article/{id}")
     public String details(Model model, @PathVariable Integer id) {
         if (!this.articleRepository.exists(id)) {
             return "redirect:/";
         }
 
-        if(!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)){
+        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) {
             UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User entityUser = this.userRepository.findByEmail(principal.getUsername());
             model.addAttribute("user", entityUser);
@@ -92,13 +123,13 @@ public class ArticleController {
 
     @GetMapping("/article/edit/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String edit(@PathVariable Integer id, Model model){
-        if(!this.articleRepository.exists(id)){
+    public String edit(@PathVariable Integer id, Model model) {
+        if (!this.articleRepository.exists(id)) {
             return "redirect:/";
         }
         Article article = this.articleRepository.findOne(id);
 
-        if(!isUserAuthorOrAdmin(article)){
+        if (!isUserAuthorOrAdmin(article)) {
             return "redirect:/article/" + id;
         }
 
@@ -117,13 +148,13 @@ public class ArticleController {
 
     @PostMapping("/article/edit/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String editProcess(@PathVariable Integer id, ArticleBindingModel articleBindingModel){
-        if(!this.articleRepository.exists(id)){
+    public String editProcess(@PathVariable Integer id, ArticleBindingModel articleBindingModel) {
+        if (!this.articleRepository.exists(id)) {
             return "redirect:/";
         }
         Article article = this.articleRepository.findOne(id);
 
-        if(!isUserAuthorOrAdmin(article)){
+        if (!isUserAuthorOrAdmin(article)) {
             return "redirect:/article/" + id;
         }
 
@@ -132,6 +163,7 @@ public class ArticleController {
 
         article.setCategory(category);
         article.setContent(articleBindingModel.getContent());
+        article.setMapCoordinates(article.getMapCoordinates());
         article.setTitle(articleBindingModel.getTitle());
         article.setTags(tags);
 
@@ -142,14 +174,14 @@ public class ArticleController {
 
     @GetMapping("/article/delete/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String delete(Model model, @PathVariable Integer id){
-        if(!this.articleRepository.exists(id)){
+    public String delete(Model model, @PathVariable Integer id) {
+        if (!this.articleRepository.exists(id)) {
             return "redirect:/";
         }
 
         Article article = this.articleRepository.findOne(id);
 
-        if(!isUserAuthorOrAdmin(article)){
+        if (!isUserAuthorOrAdmin(article)) {
             return "redirect:/article/" + id;
         }
 
@@ -161,13 +193,13 @@ public class ArticleController {
 
     @PostMapping("/article/delete/{id}")
     @PreAuthorize("isAuthenticated()")
-    public String deleteProcess(@PathVariable Integer id){
-        if(!this.articleRepository.exists(id)){
+    public String deleteProcess(@PathVariable Integer id) {
+        if (!this.articleRepository.exists(id)) {
             return "redirect:/";
         }
         Article article = this.articleRepository.findOne(id);
 
-        if(!isUserAuthorOrAdmin(article)){
+        if (!isUserAuthorOrAdmin(article)) {
             return "redirect:/article/" + id;
         }
         this.articleRepository.delete(article);
@@ -175,7 +207,7 @@ public class ArticleController {
         return "redirect:/";
     }
 
-    private boolean isUserAuthorOrAdmin(Article article){
+    private boolean isUserAuthorOrAdmin(Article article) {
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
@@ -183,14 +215,14 @@ public class ArticleController {
         return userEntity.isAdmin() || userEntity.isAuthor(article);
     }
 
-    private HashSet<Tag> findTagsFromString(String tagString){
+    private HashSet<Tag> findTagsFromString(String tagString) {
         HashSet<Tag> tags = new HashSet<>();
         String[] tagNames = tagString.split(",\\s*");
 
-        for(String tagName : tagNames){
+        for (String tagName : tagNames) {
             Tag currentTag = this.tagRepository.findByName(tagName);
 
-            if(currentTag == null){
+            if (currentTag == null) {
                 currentTag = new Tag(tagName);
                 this.tagRepository.saveAndFlush(currentTag);
             }

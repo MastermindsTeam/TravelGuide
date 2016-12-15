@@ -14,15 +14,18 @@ public class Article {
 
     private String content;
 
+    private String mapCoordinates;
+
     private User author;
 
     private Category category;
 
     private Set<Tag> tags;
 
-    public Article(String title, String content, User author, Category category, HashSet<Tag> tags) {
+    public Article(String title, String content, String mapCoordinates, User author, Category category, HashSet<Tag> tags) {
         this.title = title;
         this.content = content;
+        this.mapCoordinates = mapCoordinates;
         this.author = author;
         this.category = category;
         this.tags = tags;
@@ -64,8 +67,17 @@ public class Article {
         this.content = content;
     }
 
+    @Column(name = "map_coordinates")
+    public String getMapCoordinates() {
+        return mapCoordinates;
+    }
+
+    public void setMapCoordinates(String mapCoordinates) {
+        this.mapCoordinates = mapCoordinates;
+    }
+
     @ManyToOne
-    @JoinColumn(nullable = false, name= "authorId")
+    @JoinColumn(nullable = false, name = "authorId")
     public User getAuthor() {
         return author;
     }

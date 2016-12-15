@@ -12,6 +12,8 @@ public class ArticleBindingModel {
     @NotNull
     private String content;
 
+    private String mapCoordinates;
+
     private Integer categoryId;
 
     private String tagString;
@@ -46,5 +48,13 @@ public class ArticleBindingModel {
 
     public void setTagString(String tagString) {
         this.tagString = tagString;
+    }
+
+    public String getMapCoordinates() {
+        return this.mapCoordinates;
+    }
+
+    public void setMapCoordinates(String mapCoordinates) {
+        this.mapCoordinates = mapCoordinates;
     }
 }
