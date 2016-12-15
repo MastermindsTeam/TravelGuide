@@ -11,6 +11,10 @@
 
                     <small class="author" th:text="${article.author.fullName}"></small>
 
+                    <p>
+                        <a class="btn btn-default btn-xs" th:each="tag:${article.tags}" th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
+                    </p>
+
                     <footer>
 
                         <div class="pull-right">
