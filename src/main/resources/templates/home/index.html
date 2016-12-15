@@ -1,26 +1,15 @@
-<main>
+<main xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container body-content">
         <div class="row">
-            <th:block th:each="article : ${articles}">
-                <div class="col-md-6">
-                    <article>
-                        <header>
-                            <h2 th:text="${article.title}"></h2>
-                        </header>
+            <div class="col-md-6" th:each="category : ${categories}">
+                <header>
+                    <h2>
+                        <a th:href="@{/category/{id}(id=${category.id})}" th:text="${category.name + ' (' + #sets.size(category.articles) + ')'}">
+                        </a>
+                    </h2>
+                </header>
+            </div>
 
-                        <p th:text="${article.summary}"></p>
-
-                        <small class="author" th:text="${article.author.fullName}"></small>
-
-                        <footer>
-                            <div class="pull-right">
-                                <a class="btn btn-default btn-xs"
-                                   th:href="@{/article/{id}(id=${article.id})}">Read more &raquo;</a>
-                            </div>
-                        </footer>
-                    </article>
-                </div>
-            </th:block>
             <aside>
                 <div class="col-sm-3 pull-right">
                     <div class="panel panel-default ">
