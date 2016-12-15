@@ -18,10 +18,11 @@ public class Article {
 
     private Category category;
 
-    public Article(String title, String content, User author) {
+    public Article(String title, String content, User author, Category category) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.category = category;
     }
 
     public Article() {
