@@ -40,11 +40,11 @@ html, main, body {
 
 .wrapper {
     min-height: 100%;
-    margin-bottom: -100px;
+    margin-bottom: -60px;
 }
 
 .push {
-    height:100px;
+    height:60px;
 }
 
 body>main:after {
@@ -54,7 +54,7 @@ body>main:after {
 }
 
 body>footer {
-    height: 100px;
+    height: 60px;
     background: #101010;
     text-align: center;
 }
@@ -108,7 +108,7 @@ h1, h2, h3, h4, h6 {
 
 .well {
     background-image: url('earth.jpg') !important;
-    border: 4px solid #262626;
+    border: 4px solid black !important;
 }
 
 .btn{
