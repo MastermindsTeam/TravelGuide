@@ -10,23 +10,6 @@ body>header>a>img, body>header a  {
     font-size: 1.2em;
 }
 
-body>footer {
-    background: #101010;
-    padding: 5px;
-    margin: 10px 0;
-    text-align: center;
-}
-
-#logged-in-info {
-    float: right;
-    margin-top: 18px;
-}
-
-#logged-in-info form {
-    display: inline-block;
-    margin-right: 10px;
-}
-
 body>aside {
     float: right;
     width: 200px;
@@ -45,14 +28,45 @@ body>aside a {
     margin: 5px 0px;
     text-decoration: none;
 }
+
 body {
     background: radial-gradient(#104e8b, #8c8c8c, #104e8b);
+}
+
+html, main, body {
+    height:100%;
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -100px;
+}
+
+.push {
+    height:100px;
 }
 
 body>main:after {
     content: '';
     display: block;
     clear: both;
+}
+
+body>footer {
+    height: 100px;
+    background: #101010;
+    text-align: center;
+}
+
+#logged-in-info {
+    float: right;
+    margin-top: 18px;
+}
+
+#logged-in-info form {
+    display: inline-block;
+    margin-right: 10px;
 }
 
 ul#messages li {
@@ -110,7 +124,6 @@ h1, h2, h3, h4, h6 {
     font-size: 25px;
     border:4px solid #101010 !important;
 }
-
 
 .btn:hover {
     background-color: #8b2323 !important;

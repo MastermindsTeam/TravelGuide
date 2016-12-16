@@ -7,8 +7,10 @@
 
 <header th:include="fragments/header"></header>
 
-<main th:include="${view}"></main>
-
+<div class="wrapper">
+    <main th:include="${view}"></main>
+        <div class="push"></div>
+</div>
 <footer th:include="fragments/footer"></footer>
 
 <span th:include="fragments/scripts-bundle"></span>
