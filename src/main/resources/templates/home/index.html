@@ -21,7 +21,7 @@
                                 <a th:each="p : ${latest5posts}" th:class="list-group-item"
                                    th:href="@{/posts/view/{id}/(id=${p.id})}" th:text="${p.title}"></a>
                             </div>
-                            <a href="#" class="btn btn-success" role="button">See More</a>
+                            <a th:href="@{/home/JQuerySlider.html}" class="btn btn-success" role="button">See More</a>
                         </div>
                     </div>
                 </div>

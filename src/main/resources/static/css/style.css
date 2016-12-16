@@ -173,3 +173,17 @@ h1, h2, h3, h4, h6 {
 .dropdown-menu{
     background: linear-gradient(#104e8b, #8c8c8c) !important;
 }
+
+.slider {
+    width: 800px;
+    height: 350px;
+    overflow: hidden;
+    margin: 30px auto;
+}
+
+.slider img {
+    width: 800px;
+    height: 350px;
+    display: none;
+}
+

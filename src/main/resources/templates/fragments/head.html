@@ -2,4 +2,26 @@
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript">
+        function Slider() {
+            $(".slider#1").show("fade", 500);
+            $(".slider#1").delay(5000).hide("slide", {direction: 'left'}, 500);
+
+            var sc = $(".slider img").size();
+            var count = 2;
+
+            setInterval(function () {
+                $(".slider#" + count).show("slide", {direction: 'right'}, 500);
+                $(".slider#" + count).delay(5000).hide("slide", {direction: 'left'}, 500);
+
+                if (count == sc) {
+                    count = 1;
+                }
+                else {
+                    count = count + 1;
+                }
+            }, 6500);
+        }
+    </script>
 </head>
