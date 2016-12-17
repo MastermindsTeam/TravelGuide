@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by ivanov on 15/Dec/2016.
@@ -24,10 +25,19 @@ public class HomeController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ArticleRepository articleRepository;
+
     @GetMapping("/")
     public String index(Model model) {
         List<Category> categories = this.categoryRepository.findAll();
+        List<Article> allPosts = articleRepository.findAll();
+        List<Article> latest3Articles = allPosts.stream()
+                .sorted((a, b) -> b.getId().compareTo(a.getId()))
+                .limit(3)
+                .collect(Collectors.toList());
 
+        model.addAttribute("latest3articles", latest3Articles);
         model.addAttribute("categories", categories);
         model.addAttribute("view", "home/index");
 

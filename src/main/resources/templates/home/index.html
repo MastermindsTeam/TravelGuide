@@ -11,6 +11,13 @@
             </div>
 
             <aside>
+                <h2>Recent Posts</h2>
+                <a href="#" th:each="p : ${latest3articles}" th:text="${p.title}"
+                   th:href="@{/article/{id}/(id=${p.id})}">Work Begins on HTML5.1</a>
+            </aside>
+
+
+            <aside>
                 <div class="container-fluid col-sm-3 pull-right">
                     <div class="panel panel-default ">
                         <div class="panel-heading">
