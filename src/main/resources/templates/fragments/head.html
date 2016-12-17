@@ -1,7 +1,8 @@
-<head th:fragment="head">
+<head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
     <script type="text/javascript">
         function Slider() {
