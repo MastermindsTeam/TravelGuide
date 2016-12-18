@@ -11,13 +11,6 @@
             </div>
 
             <aside>
-                <h2>Recent Posts</h2>
-                <a href="#" th:each="p : ${latest3articles}" th:text="${p.title}"
-                   th:href="@{/article/{id}/(id=${p.id})}">Work Begins on HTML5.1</a>
-            </aside>
-
-
-            <aside>
                 <div class="container-fluid col-sm-3 pull-right">
                     <div class="panel panel-default ">
                         <div class="panel-heading">
@@ -25,8 +18,8 @@
                         </div>
                         <div class="panel-body bg-gray text-center">
                             <div th:class="list-group">
-                                <a th:each="p : ${latest5posts}" th:class="list-group-item"
-                                   th:href="@{/posts/view/{id}/(id=${p.id})}" th:text="${p.title}"></a>
+                                <a href="#" th:each="p : ${latest3articles}" th:text="${p.title}" th:class="list-group-item"
+                                   th:href="@{/article/{id}/(id=${p.id})}"></a>
                             </div>
                             <a th:href="@{/home/JQuerySlider.html}" class="btn btn-success" role="button">See More</a>
                         </div>
