@@ -5,6 +5,7 @@ import blog.entity.Article;
 import blog.entity.Category;
 import blog.repository.ArticleRepository;
 import blog.repository.CategoryRepository;
+import blog.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +29,12 @@ public class HomeController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @GetMapping("/")
     public String index(Model model) {
+        notificationService.addInfoMessage("Welcome to our amazing Travel Guide!");
         List<Category> categories = this.categoryRepository.findAll();
         List<Article> allPosts = articleRepository.findAll();
         List<Article> latest3Articles = allPosts.stream()

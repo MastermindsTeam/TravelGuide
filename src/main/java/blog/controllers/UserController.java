@@ -6,6 +6,7 @@ import blog.entity.Role;
 import blog.entity.User;
 import blog.repository.RoleRepository;
 import blog.repository.UserRepository;
+import blog.service.NotificationService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,6 +33,8 @@ public class UserController {
     RoleRepository roleRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    NotificationService notificationService;
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -74,6 +77,7 @@ public class UserController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+        notificationService.addInfoMessage("You are logged out.");
 
         return "redirect:/login?logout";
     }

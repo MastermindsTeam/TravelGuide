@@ -9,6 +9,7 @@ import blog.repository.ArticleRepository;
 import blog.repository.CategoryRepository;
 import blog.repository.TagRepository;
 import blog.repository.UserRepository;
+import blog.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,6 +41,8 @@ public class ArticleController {
     private CategoryRepository categoryRepository;
     @Autowired
     private TagRepository tagRepository;
+    @Autowired
+    private NotificationService notificationService;
 
     @GetMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
@@ -104,6 +107,7 @@ public class ArticleController {
     @GetMapping("/article/{id}")
     public String details(Model model, @PathVariable Integer id) {
         if (!this.articleRepository.exists(id)) {
+            notificationService.addErrorMessage("Cannot find post #" + id);
             return "redirect:/";
         }
 

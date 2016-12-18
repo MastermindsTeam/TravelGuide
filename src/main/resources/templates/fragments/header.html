@@ -1,4 +1,4 @@
-<header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<header th:fragment="header" th:remove="tag" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="container-fluid">
         <img src="/img/HeaderPictureNo3.jpg" class="img-responsive"></img>
     </div>
@@ -61,4 +61,15 @@
             </div>
         </div>
     </nav>
+
+    <ul id="messages" th:with="notifyMessages=${session[T(blog.service
+          .NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+        <li th:each="msg : ${notifyMessages}"
+            th:text="${msg.text}"
+            th:class="${#strings.toLowerCase(msg.type)}">
+        </li>
+        <span th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(
+          T(blog.service.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+    </ul>
+
 </header>
