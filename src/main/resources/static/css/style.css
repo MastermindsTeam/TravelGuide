@@ -125,9 +125,9 @@ h1, h2, h3, h4, h6 {
     text-align: center ;
     transition: all 0.5s ;
     cursor: pointer;
-    background: #104e8b ;
+    background: -webkit-linear-gradient(left, #104e8b, lightgrey,#104e8b);
     border-radius: 40%;
-    color: #ffffff;
+    color: black !important;
     font-size: 17px;
     border:2px solid #111 !important;
     box-shadow: 0 9px #555;
@@ -135,8 +135,8 @@ h1, h2, h3, h4, h6 {
 }
 
 .btn:hover {
-    background-color: #8b2323;
     padding-right: 25px;
+    color: black !important;
 }
 
 
@@ -145,24 +145,24 @@ h1, h2, h3, h4, h6 {
     transform: translateY(4px);
 }
 .btn-success:active, .btn-success:hover  {
-    background-color: #6e8b3d;
+    background: -webkit-linear-gradient(left, #6e8b3d, lightgrey,#6e8b3d) !important;
 }
 
 .btn-primary:active, .btn-primary:hover {
-    background-color: #46b8da;
+    background: -webkit-linear-gradient(left, #46b8da, lightgrey,#46b8da) !important;
 }
 .btn-default:active, .btn-default:hover {
-    background-color: #9d9d9d;
+    background: -webkit-linear-gradient(left, #708090, lightgrey,#708090) !important;
 }
 .btn-info:active, .btn-info:hover {
-    background-color: darkblue;
+    background: -webkit-linear-gradient(left, darkblue, lightgrey,darkblue) !important;
 }
 .btn-warning:active, .btn-warning:hover {
-    background-color: goldenrod;
+    background: -webkit-linear-gradient(left, goldenrod, lightgrey,goldenrod) !important;
 }
 
 .btn-danger:active, .btn-danger:hover {
-    background-color: #761c19;
+    background: -webkit-linear-gradient(left, #761c19, lightgrey,#761c19) !important;
 }
 .panel-body{
     background: linear-gradient(#104e8b, #8c8c8c);
