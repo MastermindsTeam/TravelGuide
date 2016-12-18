@@ -85,7 +85,9 @@ ul#messages li {
 }
 
 ul#messages li.info {
-    background: #b0e0e6;
+    color: black;
+    background: -webkit-linear-gradient(left, darkgrey, white 5%, darkgrey, white 95%, darkgrey);
+    border: 4px solid black;
 }
 
 ul#messages li.error {
