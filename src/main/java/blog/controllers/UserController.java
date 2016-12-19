@@ -49,6 +49,11 @@ public class UserController {
         }
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        User userEntity = this.userRepository.findByEmail(userBindingModel.getEmail());
+        if(userEntity != null){
+            notificationService.addErrorMessage("User with this email already exists");
+            return "redirect:/register";
+        }
 
         User user = new User(
                 userBindingModel.getEmail(),

@@ -4,12 +4,14 @@ package blog.bindingModel;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by ivanov on 13.12.2016 г..
  */
 public class ArticleBindingModel {
     @NotNull
+    @Size(min=1)
     private String title;
 
     @NotNull
