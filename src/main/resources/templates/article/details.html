@@ -10,7 +10,7 @@
 
                     <h5 th:text="${article.content}"> </h5>
 
-                    <iframe th:src="@{http://maps.google.com/maps(q=${article.mapCoordinates},z=15,output='embed')}" width="640" height="200"></iframe>
+                    <iframe th:src="@{http://maps.google.com/maps(q=${article.mapCoordinates},z=5,output='embed')}" width="640" height="200"></iframe>
 
                     <small class="author" th:text="${article.author.fullName}"></small>
 
