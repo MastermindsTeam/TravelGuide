@@ -86,7 +86,7 @@ ul#messages li {
 
 ul#messages li.info {
     color: black;
-    background: -webkit-linear-gradient(left, darkgrey, white 5%, darkgrey, white 95%, darkgrey);
+    background: -webkit-linear-gradient(left, #696969, white 5%, #696969, white 95%, #696969);
     border: 4px solid black;
 }
 
@@ -115,7 +115,7 @@ h1, h2, h3, h4, h6 {
 
 
 .well {
-    background-image: url('earth.jpg') !important;
+    background-image: url('/img/earth.jpg') !important;
     border: 4px solid black !important;
 }
 
@@ -202,7 +202,7 @@ h1, h2, h3, h4, h6 {
     display: block;
     padding: 10px 15px;
     margin-bottom: -1px;
-    background: -webkit-linear-gradient(left, darkgrey, white 5%, darkgrey, white 95%, darkgrey);
+    background: -webkit-linear-gradient(left, #696969, white 5%, #696969, white 95%, #696969);
     border: 2px solid black;
     color: black !important;
     font-size: 20px;

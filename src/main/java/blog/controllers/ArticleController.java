@@ -74,6 +74,10 @@ public class ArticleController {
         Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
         HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
 
+        for (Tag tag : tags) {
+            System.out.println(tag.getId());
+        }
+
 
         String coordinates = "";
 
@@ -233,6 +237,11 @@ public class ArticleController {
 
     private HashSet<Tag> findTagsFromString(String tagString) {
         HashSet<Tag> tags = new HashSet<>();
+
+        if (tagString.isEmpty()) {
+            return tags;
+        }
+
         String[] tagNames = tagString.split(",\\s*");
 
         for (String tagName : tagNames) {
@@ -245,6 +254,7 @@ public class ArticleController {
 
             tags.add(currentTag);
         }
+
         return tags;
     }
 
