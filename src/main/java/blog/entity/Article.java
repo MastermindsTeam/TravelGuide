@@ -16,19 +16,22 @@ public class Article {
 
     private String mapCoordinates;
 
+    private String picturePath1;
+
     private User author;
 
     private Category category;
 
     private Set<Tag> tags;
 
-    public Article(String title, String content, String mapCoordinates, User author, Category category, HashSet<Tag> tags) {
+    public Article(String title, String content, String mapCoordinates, User author, Category category, HashSet<Tag> tags, String picturePath1) {
         this.title = title;
         this.content = content;
         this.mapCoordinates = mapCoordinates;
         this.author = author;
         this.category = category;
         this.tags = tags;
+        this.picturePath1 = picturePath1;
     }
 
     public Article() {
@@ -106,5 +109,13 @@ public class Article {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+    public String getPicturePath1() {
+        return picturePath1;
+    }
+
+    public void setPicturePath1(String picturePath1) {
+        this.picturePath1 = picturePath1;
     }
 }

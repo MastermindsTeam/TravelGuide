@@ -1,5 +1,8 @@
 package blog.bindingModel;
 
+
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -17,6 +20,8 @@ public class ArticleBindingModel {
     private Integer categoryId;
 
     private String tagString;
+
+    private MultipartFile file;
 
     public String getTitle() {
         return title;
@@ -56,5 +61,13 @@ public class ArticleBindingModel {
 
     public void setMapCoordinates(String mapCoordinates) {
         this.mapCoordinates = mapCoordinates;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }

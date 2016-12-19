@@ -10,8 +10,10 @@ import blog.repository.CategoryRepository;
 import blog.repository.TagRepository;
 import blog.repository.UserRepository;
 import blog.service.NotificationService;
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.core.env.Environment;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,8 +23,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -44,6 +51,10 @@ public class ArticleController {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private Environment env;
+
+
     @GetMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
     public String create(Model model) {
@@ -56,9 +67,9 @@ public class ArticleController {
 
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
-    public String createProcess(ArticleBindingModel articleBindingModel) {
+    public String createProcess(ArticleBindingModel articleBindingModel) throws IOException {
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        this.saveFile(articleBindingModel.getFile());
         User userEntity = this.userRepository.findByEmail(user.getUsername());
         Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
         HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
@@ -73,14 +84,15 @@ public class ArticleController {
                 throw new IllegalArgumentException("Invalid coordinates entered");
             }
         }
-
+        String picturePath1 = "/img/" + articleBindingModel.getFile().getOriginalFilename();
         Article articleEntity = new Article(
                 articleBindingModel.getTitle(),
                 articleBindingModel.getContent(),
                 coordinates,
                 userEntity,
                 category,
-                tags
+                tags,
+                picturePath1
         );
 
         this.articleRepository.saveAndFlush(articleEntity);
@@ -234,5 +246,14 @@ public class ArticleController {
             tags.add(currentTag);
         }
         return tags;
+    }
+
+    private void saveFile(MultipartFile file) throws IOException {
+
+        File convFile = new File("src/main/resources/public/img/" + file.getOriginalFilename());
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
     }
 }
