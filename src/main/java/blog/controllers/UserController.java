@@ -45,6 +45,7 @@ public class UserController {
     @PostMapping("/register")
     public String registerProcess(UserBindingModel userBindingModel) {
         if (!userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())) {
+            notificationService.addErrorMessage("Passwords do not match.");
             return "redirect:/register";
         }
 
