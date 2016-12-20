@@ -202,7 +202,7 @@ h1, h2, h3, h4, h6 {
 .list-group-item {
     position: relative;
     display: block;
-    padding: 10px 15px;
+    padding: 20px 15px;
     margin-bottom: -1px;
     background: -webkit-linear-gradient(left, #696969, white 5%, #696969, white 95%, #696969);
     border: 2px solid black;
