@@ -91,8 +91,9 @@ ul#messages li.info {
 }
 
 ul#messages li.error {
-    background: #d00;
-    color: white;
+    background: -webkit-linear-gradient(left, #d00, white 5%, #d00, white 95%, #d00);
+    color: black;
+    border: 4px solid black;
 }
 
 .formError {
