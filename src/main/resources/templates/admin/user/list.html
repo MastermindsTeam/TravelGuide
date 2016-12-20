@@ -1,4 +1,4 @@
-<main>
+<main xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container body-content">
         <div class="well">
             <h2><p>All Users</p></h2>
@@ -20,8 +20,8 @@
                             <td th:text="${user.fullName}"></td>
                             <td th:text="${user.email}"></td>
                             <td>
-                                <a th:href="@{/admin/users/edit/{id}(id=${user.id})}"><font color="black">Edit</font></a>
-                                <a th:href="@{/admin/users/delete/{id}(id=${user.id})}"><font color="black">Delete</font></a>
+                                <a th:href="@{/admin/users/edit/{id}(id=${user.id})}"><font color="#303030">Edit</font></a>
+                                <a th:href="@{/admin/users/delete/{id}(id=${user.id})}"><font color="#303030">Delete</font></a>
                             </td>
                         </tr>
                     </th:block>
