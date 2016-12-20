@@ -6,7 +6,7 @@ body>header {
 body>header>a>img, body>header a  {
     display: inline-block;
     vertical-align: middle;
-    padding: 0px 5px;
+    padding: 0 5px;
     font-size: 1.2em;
 }
 
@@ -20,12 +20,12 @@ body>aside {
 }
 
 body>aside h2 {
-    margin: 5px 0px 15px 0px;
+    margin: 5px 0 15px 0;
 }
 
 body>aside a {
     display: block;
-    margin: 5px 0px;
+    margin: 5px 0;
     text-decoration: none;
 }
 
@@ -116,7 +116,7 @@ h1, h2, h3, h4, h6 {
 
 .well {
     background-image: url('/img/earth.jpg') !important;
-    border: 4px solid black !important;
+    border:solid black 4px !important;
 }
 
 .btn{
@@ -166,16 +166,16 @@ h1, h2, h3, h4, h6 {
 }
 .panel-body{
     background: linear-gradient(#104e8b, #8c8c8c);
-    border: 8px solid;
+    border: 8px solid #121212;
 }
 
 .panel{
-    border: 4px black !important;
+    border: 4px #101010 !important;
     margin-top: -300px;
 }
 .panel-heading{
     background: #101010 !important;
-    border: 4px black !important;
+    border: 4px #101010 !important;
     font-size: 20px;
 }
 .panel-title{
@@ -209,3 +209,7 @@ h1, h2, h3, h4, h6 {
     font-size: 20px;
 }
 
+.row {
+    margin-left: -16px;
+    margin-right: -16px;
+}
