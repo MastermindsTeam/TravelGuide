@@ -171,6 +171,8 @@ h1, h2, h3, h4, h6 {
 
 .panel{
     border: 4px #101010 !important;
+    margin-right: 70px;
+    margin-top: 30px;
 }
 .panel-heading{
     background: #101010 !important;
