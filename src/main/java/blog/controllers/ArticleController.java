@@ -68,6 +68,11 @@ public class ArticleController {
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
     public String createProcess(ArticleBindingModel articleBindingModel) throws IOException {
+        String title = "";
+        if (StringUtils.isEmpty(articleBindingModel.getTitle())) {
+            notificationService.addErrorMessage("Title is mandatory.");
+            return "redirect:/article/create";
+        }
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         this.saveFile(articleBindingModel.getFile());
         User userEntity = this.userRepository.findByEmail(user.getUsername());

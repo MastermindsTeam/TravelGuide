@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
  */
 public class ArticleBindingModel {
     @NotNull
-    @Size(min=1)
     private String title;
 
     @NotNull
@@ -25,6 +24,7 @@ public class ArticleBindingModel {
 
     private MultipartFile file;
 
+    @Size(min=1)
     public String getTitle() {
         return title;
     }
