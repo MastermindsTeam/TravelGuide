@@ -5,6 +5,7 @@ import blog.entity.Article;
 import blog.entity.Category;
 import blog.repository.ArticleRepository;
 import blog.repository.CategoryRepository;
+import blog.service.NotificationService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private NotificationService notificationService;
 
     @GetMapping("/")
     public String list(Model model){
@@ -55,6 +58,7 @@ public class CategoryController {
     @PostMapping("/create")
     public String createProcess(CategoryBindingModel categoryBindingModel){
         if(StringUtils.isEmpty(categoryBindingModel.getName())){
+            notificationService.addErrorMessage("Category name cannot be empty");
             return "redirect:/admin/categories/create";
         }
         Category category = new Category(categoryBindingModel.getName());
