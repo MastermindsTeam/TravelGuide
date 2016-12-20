@@ -61,6 +61,13 @@ public class CategoryController {
             notificationService.addErrorMessage("Category name cannot be empty");
             return "redirect:/admin/categories/create";
         }
+
+        Category sameNameCategory = this.categoryRepository.findByName(categoryBindingModel.getName());
+        if(sameNameCategory != null){
+            notificationService.addErrorMessage("Category with this name already exists");
+            return "redirect:/admin/categories/create";
+        }
+
         Category category = new Category(categoryBindingModel.getName());
 
         this.categoryRepository.saveAndFlush(category);
