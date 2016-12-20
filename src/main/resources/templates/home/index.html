@@ -1,3 +1,18 @@
+<aside>
+    <div class="container col-sm-3 pull-right">
+        <div class="panel">
+            <div class="panel-heading">
+                <h2 class="panel-title"><p>Recent Articles</p></h2>
+            </div>
+            <div class="panel-body bg-gray text-center">
+                <div th:class="list-group">
+                    <a href="#" th:each="p : ${latest3articles}" th:text="${p.title}" th:class="list-group-item"
+                       th:href="@{/article/{id}/(id=${p.id})}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
 <main xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container body-content">
         <div class="row">
@@ -10,21 +25,7 @@
                 </header>
             </div>
 
-            <aside>
-                <div class="container col-sm-3 pull-right">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h2 class="panel-title"><p>Recent Articles</p></h2>
-                        </div>
-                        <div class="panel-body bg-gray text-center">
-                            <div th:class="list-group">
-                                <a href="#" th:each="p : ${latest3articles}" th:text="${p.title}" th:class="list-group-item"
-                                   th:href="@{/article/{id}/(id=${p.id})}"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
+
         </div>
     </div>
 </main>
