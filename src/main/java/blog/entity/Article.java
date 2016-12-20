@@ -1,5 +1,7 @@
 package blog.entity;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -55,6 +57,7 @@ public class Article {
     }
 
     @Column(nullable = false)
+    @Required
     public String getTitle() {
         return title;
     }
@@ -64,6 +67,7 @@ public class Article {
     }
 
     @Column(columnDefinition = "text", nullable = false)
+    @Required
     public String getContent() {
         return content;
     }
