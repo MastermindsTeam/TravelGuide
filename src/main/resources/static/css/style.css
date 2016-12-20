@@ -102,6 +102,11 @@ ul#messages li.error {
     font-style: italic;
 }
 
+.alert {
+    background: -webkit-linear-gradient(left, #d00, white 5%, #d00, white 95%, #d00);
+    color: black;
+    border: 4px solid black;
+}
 .bg-gray{
     background-color: #f9f9f9;
 }
