@@ -74,6 +74,12 @@ public class ArticleController {
             return "redirect:/article/create";
         }
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if("".equals(articleBindingModel.getFile().getOriginalFilename())){
+            notificationService.addErrorMessage("Picture is mandatory.");
+            return "redirect:/article/create";
+        }
+
         this.saveFile(articleBindingModel.getFile());
         User userEntity = this.userRepository.findByEmail(user.getUsername());
         Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
@@ -93,6 +99,7 @@ public class ArticleController {
                 throw new IllegalArgumentException("Invalid coordinates entered");
             }
         }
+
         String picturePath1 = "/img/" + articleBindingModel.getFile().getOriginalFilename();
         Article articleEntity = new Article(
                 articleBindingModel.getTitle(),
